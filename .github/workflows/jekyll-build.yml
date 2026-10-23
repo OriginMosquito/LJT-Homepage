@@ -1,13 +1,14 @@
 name: Jekyll build
 
 on:
+  workflow_dispatch:
   # Run after bad-pr check
   workflow_run:
     workflows: ["Cleanup bad PR"]
     branches: [main]
     types:
       - completed
-      
+
 permissions:
   contents: read
 
@@ -32,3 +33,8 @@ jobs:
         run: bundle exec jekyll build --strict_front_matter
         env:
           JEKYLL_ENV: production
+
+      - name: Upload site artifact
+        uses: actions/upload-pages-artifact@v5.0.0
+        with:
+          path: _site
