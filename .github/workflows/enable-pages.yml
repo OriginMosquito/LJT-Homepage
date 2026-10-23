@@ -3,9 +3,7 @@ name: Enable Pages
 on:
   workflow_dispatch:
 
-permissions:
-  pages: write
-  contents: read
+permissions: write-all
 
 jobs:
   enable:
